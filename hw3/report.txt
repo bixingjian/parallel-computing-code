@@ -1,0 +1,44 @@
+-----2.1-----
+intput vector size: 67108864
+time: 0.002591 secs
+effective bandwidth: 103.60 GB/s
+
+The effective bandwidth is calculated using the formula:
+Effective bandwidth = (N * sizeof(dtype)) / (t_kernel_0 * 1e9)
+N is the input vector size. sizeof(dtype) is the size of the data type (float in this case). t_kernel_0 is the execution time of the GPU reduction kernel.
+
+
+-----2.2-----
+intput vector size: 67108864
+time: 0.001629 secs
+effective bandwidth: 164.79 GB/s
+
+how much fater: 0.002591 / 0.001629 = 1.59054635
+
+-----2.3-----
+Effective bandwidth: 210.87 GB/s
+
+-----2.4-----
+Effective bandwidth: 402.45 GB/s
+
+-----2.5-----
+Effective bandwidth: 588.67 GB/s
+
+-----2.6-----
+Effective bandwidth: 751.92 GB/s
+
+-----3-----
+The code in matTrans shows taht the matrix transpose is performed using shared memory tiling improve memory access patterns and reduce global memory transactions. 
+Each thread block loads a tile of the input matrix into shared memory, and then each thread writes the corresponding element to the output matrix with transposed indices.
+By utilizing shared memory, the code reduces global memory access latency and exploits spatial locality.
+gpuTranspose mainly for the transfer between the host and device.
+
+for the performace:
+The GPU transpose times for the five trials are as follows:
+Trial 1: 0.239156 seconds
+Trial 2: 0.164412 seconds
+Trial 3: 0.156274 seconds
+Trial 4: 0.153878 seconds
+Trial 5: 0.154419 seconds
+we can see that the GPU transpose kernel consistently outperforms the CPU transpose kernel in terms of execution time.
+The GPU transpose kernel leverages parallelism and shared memory tiling to optimize memory access patterns and exploit spatial locality, which results in improved performance compared to a straightforward CPU implementation.
