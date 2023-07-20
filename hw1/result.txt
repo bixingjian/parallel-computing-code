@@ -1,0 +1,106 @@
+- - - easy
+Timer: gettimeofday
+Timer resolution: ~ 1 us (?)
+
+N == 10000000
+
+Quicksort: 1.87207 seconds ==> 5.34168 million keys per second
+ (Array is sorted.)
+My sort: 1.58155 seconds ==> 6.32292 million keys per second
+ (Array is sorted.)
+ (Arrays are equal.)
+
+
+
+
+
+- - -omp from 2 to 40:
+
+--- 2
+ Timer: gettimeofday
+Timer resolution: ~ 1 us (?)
+
+N == 10000000
+
+Quicksort: 1.79141 seconds ==> 6.28375 million keys per second
+ (Array is sorted.)
+My sort: 1.11499 seconds ==> 7.06721 million keys per second
+ (Array is sorted.)
+ (Arrays are equal.)
+
+
+--- 4
+ Timer: gettimeofday
+Timer resolution: ~ 1 us (?)
+
+N == 10000000
+
+Quicksort: 1.83357 seconds ==> 5.48495 million keys per second
+ (Array is sorted.)
+My sort: 1.05819 seconds ==> 9.32996 million keys per second
+ (Array is sorted.)
+ (Arrays are equal.)
+
+
+
+
+
+
+--- 8
+ Timer: gettimeofday
+Timer resolution: ~ 1 us (?)
+
+N == 10000000
+
+Quicksort: 1.82317 seconds ==> 5.48495 million keys per second
+ (Array is sorted.)
+My sort: 0.87182 seconds ==> 9.32996 million keys per second
+ (Array is sorted.)
+ (Arrays are equal.)
+
+
+
+
+-- 16
+Timer: gettimeofday
+Timer resolution: ~ 1 us (?)
+
+N == 10000000
+
+Quicksort: 1.87283 seconds ==> 5.33952 million keys per second
+ (Array is sorted.)
+My sort: 0.62795 seconds ==> 15.9248 million keys per second
+ (Array is sorted.)
+ (Arrays are equal.)
+
+
+
+
+
+--- 20
+Timer: gettimeofday
+Timer resolution: ~ 1 us (?)
+
+N == 10000000
+
+Quicksort: 1.83275 seconds ==> 5.45628 million keys per second
+	(Array is sorted.)
+My sort: 0.283636 seconds ==> 35.2565 million keys per second
+	(Array is sorted.)
+	(Arrays are equal.)
+
+
+
+
+
+-40 
+ Timer: gettimeofday
+Timer resolution: ~ 1 us (?)
+
+N == 10000000
+
+Quicksort: 1.78512 seconds ==> 5.33299 million keys per second
+ (Array is sorted.)
+My sort: 0.12621 seconds ==> 12.1035 million keys per second
+ (Array is sorted.)
+ (Arrays are equal.)
