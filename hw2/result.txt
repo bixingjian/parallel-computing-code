@@ -1,0 +1,78 @@
+---serial:
+0.714
+
+
+--- cyclic
+node = 1, proc = 1
+MPI_Wtime measured a time to be: 0.492, speedup = 1.664
+
+node = 4, proc = 20
+MPI_Wtime measured a time to be: 0.216, speedup = 3.30
+
+node = 4, proc = 40
+MPI_Wtime measured a time to be: 0.170, speedup = 4.20 
+
+node = 4, proc = 80
+MPI_Wtime measured a time to be: 0.174, speedup = 4.11
+
+node = 4, world 80 size = 5000 * 5000
+MPI_Wtime measured a time to be: 1.795
+
+node = 4, proc = 160
+MPI_Wtime measured a time to be: 0.158, speedup = 4.52
+
+
+
+--- block:
+node = 1 proc = 1
+MPI_Wtime measured a time to be: 0.515, speedup = 1.386
+
+node = 4 proc = 20
+MPI_Wtime measured a time to be: 0.220, speedup = 3.245
+
+node = 4, proc = 40
+MPI_Wtime measured a time to be: 0.209, speedup = 3.416
+
+node = 4, proc = 80
+MPI_Wtime measured a time to be: 0.284, speedup = 2.514
+
+node = 4, world 80 size = 5000 * 5000
+MPI_Wtime measured a time to be: 2.028
+
+node = 4, proc = 160
+MPI_Wtime measured a time to be: 0.194, speedup = 3.680
+
+
+
+--- dynamic:
+node = 1 proc = 1
+MPI_Wtime measured a time to be: 0.564, speedup = 1.266
+
+node = 4 proc = 20
+MPI_Wtime measured a time to be: 0.230, speedup = 3.104
+
+node = 4, proc = 40
+MPI_Wtime measured a time to be: 0.178, speedup = 4.011
+
+node = 4, proc = 80
+MPI_Wtime measured a time to be: 0.188, speedup = 3.798
+
+node = 4, world 80 size = 5000 * 5000
+MPI_Wtime measured a time to be: 1.131
+
+node = 4, proc = 160
+MPI_Wtime measured a time to be: 0.113, speedup = 6.319
+
+
+
+--- compare block and cyclic:
+Cyclic approach is better. 
+It costs less time for each node and processes setup. Also, when the image size gets bigger, it scales better than the block approach.
+The reason I think is that, in the cyclic approach, each process is responsible for computing a consecutive sequence of rows, This ensures that each process has a balanced workload.
+For Block, the rendering process requires a gather operation to collect all the values at the root process, which adds some communication overhead.
+Considering these factors, I would offer a full-time job to Intern Block, as he/she's strategy demonstrates better load balancing and more efficient workload distribution.
+
+
+--- compare coordinator/worker and other two approach
+From the time we can see that when the image size is 5000 * 5000, the coordinator/worker works way better than the block and cyclic model. 
+This is because it enables load balancing in real-time by assigning new units of work to worker processes as they become available, ensuring that no worker remains idle for an extended period.
